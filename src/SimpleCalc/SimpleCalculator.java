@@ -1,15 +1,50 @@
 package SimpleCalc;
 
-import LeapYear.LeapYearChecker;
-
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SimpleCalculator extends JFrame{
     private JPanel panel1;
-    private JTextField textField1;
-    private JComboBox comboBox1;
-    private JButton computeResultButton;
+    private JTextField tfNumber1;
+    private JComboBox cbOperations;
+    private JButton btnCompute;
+    private JTextField tfNumber2;
+    private JTextField lblResult;
 
+    public SimpleCalculator(){
+
+        btnCompute.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OpCompute();
+            }
+        });
+    }
+
+    public void OpCompute(){
+        String op = (String) cbOperations.getSelectedItem();
+        double n1 = Double.parseDouble(tfNumber1.getText());
+        double n2 = Double.parseDouble(tfNumber2.getText());
+        double res = 0;
+        if (op == "+") {
+            res = n1 + n2;
+            lblResult.setText(String.valueOf(String.format("%.0f", (res))));
+        }
+        if (op == "-"){
+            res = n1 - n2;
+            lblResult.setText(String.valueOf(String.format("%.0f", (res))));
+        }
+        if (op == "*"){
+            res = n1 * n2;
+            lblResult.setText(String.valueOf(String.format("%.0f", (res))));
+        }
+        if (op == "/"){
+            res = n1 / n2;
+            lblResult.setText(String.valueOf(String.format("%.0f", (res))));
+        }
+
+    }
     public static void main(String[] args) {
         SimpleCalculator app = new SimpleCalculator();
         app.setContentPane(app.panel1);
@@ -17,4 +52,5 @@ public class SimpleCalculator extends JFrame{
         app.setDefaultCloseOperation(EXIT_ON_CLOSE);
         app.setVisible(true);
     }
+
 }
