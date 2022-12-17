@@ -18,9 +18,16 @@ public class LeapYearChecker extends JFrame{
     }
 
         public void checkYear() {
+            try {
+                if (tfYear.getText() == " ") {
+                    throw new IllegalArgumentException("Empty String!");
+                }
                 double yr = Double.parseDouble(tfYear.getText());
                 boolean leap;
 
+                if (yr < 0) {
+                    throw new IllegalArgumentException("Input is invalid!");
+                }
                 if (yr % 4 == 0) {
                     if (yr % 100 == 0) {
                         leap = yr % 400 == 0;
@@ -37,9 +44,12 @@ public class LeapYearChecker extends JFrame{
                     JOptionPane.showMessageDialog(panel1, "Not a Leap Year");
                 }
                 tfYear.setText("");
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                tfYear.setText("");}
     }
 
-    public static void main(String[] args) {
+            public static void main(String[] args) {
         LeapYearChecker app = new LeapYearChecker();
         app.setContentPane(app.panel1);
         app.setSize(350, 350);
