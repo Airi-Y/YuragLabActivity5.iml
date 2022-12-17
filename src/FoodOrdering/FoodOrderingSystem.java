@@ -1,6 +1,7 @@
 package FoodOrdering;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,44 +28,63 @@ public class FoodOrderingSystem extends JFrame{
         });
     }
 
-    public void orders(){
-        double currT = 0;
-        double res = 0;
-        if (cPizza.isSelected()) {
-            currT += 100;
+    public void orders() {
+        try {
+            double currT = 0;
+            double res = 0;
+            boolean dump = false;
+
+            if (cPizza.isSelected()) {
+                currT += 100;
+                dump = true;
+            }
+            if (cBurger.isSelected()) {
+                currT += 80;
+                dump = true;
+            }
+            if (cFries.isSelected()) {
+                currT += 65;
+                dump = true;
+            }
+            if (cSoftDrinks.isSelected()) {
+                currT += 55;
+                dump = true;
+            }
+            if (cTea.isSelected()) {
+                currT += 50;
+                dump = true;
+            }
+            if (cSundae.isSelected()) {
+                currT += 40;
+                dump = true;
+            }
+            if (rbNone.isSelected()) {
+                currT = currT;
+                dump = true;
+            }
+            if (rb5.isSelected()) {
+                res = currT * 0.05;
+                currT = currT - res;
+                dump = true;
+            }
+            if (rb10.isSelected()) {
+                res = currT * 0.10;
+                currT = currT - res;
+                dump = true;
+            }
+            if (rb15.isSelected()) {
+                res = currT * 0.15;
+                currT = currT - res;
+                dump = true;
+            }
+
+        if(dump == false) {throw new Exception("Invalid"); }
+                JOptionPane.showMessageDialog(panel1, "The total price is Php " + String.format("%.2f", currT));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        if (cBurger.isSelected()){
-            currT += 80;
-        }
-        if (cFries.isSelected()){
-            currT += 65;
-        }
-        if (cSoftDrinks.isSelected()){
-            currT += 55;
-        }
-        if (cTea.isSelected()){
-            currT += 50;
-        }
-        if (cSundae.isSelected()){
-            currT += 40;
-        }
-        if (rbNone.isSelected()){
-            currT = currT;
-        }
-        if (rb5.isSelected()) {
-            res = currT * 0.05;
-            currT = currT -  res;
-        }
-        if (rb10.isSelected()){
-            res =  currT * 0.10;
-            currT = currT - res;
-        }
-        if (rb15.isSelected()){
-            res = currT * 0.15;
-            currT = currT - res;
-        }
-        JOptionPane.showMessageDialog(panel1, "The total price is Php " + String.format("%.2f", currT));
     }
+
 
     public static void main(String[] args) {
         FoodOrderingSystem app = new FoodOrderingSystem();
