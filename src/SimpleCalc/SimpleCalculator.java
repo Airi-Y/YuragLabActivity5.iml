@@ -23,6 +23,7 @@ public class SimpleCalculator extends JFrame{
     }
 
     public void OpCompute(){
+        try{
         String op = (String) cbOperations.getSelectedItem();
         double n1 = Double.parseDouble(tfNumber1.getText());
         double n2 = Double.parseDouble(tfNumber2.getText());
@@ -43,7 +44,9 @@ public class SimpleCalculator extends JFrame{
             res = n1 / n2;
             lblResult.setText(String.valueOf(String.format("%.0f", (res))));
         }
-
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
     public static void main(String[] args) {
         SimpleCalculator app = new SimpleCalculator();
